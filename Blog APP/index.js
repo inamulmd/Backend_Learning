@@ -1,13 +1,14 @@
+// npm init -y
+//npm i express
 
-
-const express = require("express");
-const app =express();
+const express = require("express");//express ka frame work lata hai 
+const app =express();//server create kiya
 
 require("dotenv").config();
 const PORT= process.env.PORT || 3000; // object
 
 //middleware
-app.use(express.json());
+app.use(express.json());// body json ko pass krne me help karta hai
 
 const blog = require ("./routes/blog")
 //mount

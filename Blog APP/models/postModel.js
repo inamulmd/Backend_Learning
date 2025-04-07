@@ -13,11 +13,11 @@ const postSchema = new mongoose.Schema({
         required:true,
     },
     likes: [{
-        types:mongoose.Schema.Types.ObjectId,
+        type:mongoose.Schema.Types.ObjectId,
         ref:"Like",
     }],
     comments:[{
-        types : mongoose.Schema.Types.ObjectId,
+        type : mongoose.Schema.Types.ObjectId,
         ref:"Comment",
     }]
 
@@ -27,4 +27,4 @@ const postSchema = new mongoose.Schema({
 
 
 //export
-module.exports =mongoose.module("Post",postSchema);
+module.exports =mongoose.model("Post",postSchema);
