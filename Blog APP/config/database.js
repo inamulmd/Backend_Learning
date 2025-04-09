@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-require("dotenv").config(); //import libary 
+require("dotenv").config(); //import  environment file libary 
 
 const connectWithDb =()=>{
     mongoose.connect(process.env.DATABASE_URL,{
