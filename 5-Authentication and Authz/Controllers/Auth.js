@@ -98,7 +98,7 @@ exports.login = async(req,res) => {
               console.log(user);
               
               const options ={
-                expires:new Date(Date.now() + 3 * 24 * 60 *1000),
+                expires:new Date(Date.now() + 3*24*60*60*1000),
                 httpOnly:true,            
              }
 
@@ -108,6 +108,13 @@ exports.login = async(req,res) => {
                 user,
                 message:'user Logged in successfully',
               });
+
+            // res.status(200).json({
+            //     success:true,
+            //     token,
+            //     user,
+            //     message:'user Logged in successfully',
+            //   });
          }
          else{
             //passwor d do not match

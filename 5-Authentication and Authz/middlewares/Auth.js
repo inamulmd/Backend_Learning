@@ -7,7 +7,13 @@
     try { 
         //exttract JWT token
         //Pending : other ways to fetch token from header
-        const token = req.body.token;
+      
+        console.log("cookie", req.cookies.token);
+        console.log("body", req.body.token);
+        console.log("header", req.header("Authorization"));
+
+        const token = req.cookies.token || req.body.token ||req.header("Authorization").replace("Bearer ", "").trim();
+        ;  
 
         if(!token){
             return res.status(401).json({
@@ -19,7 +25,7 @@
         //verify the token
         try {
             const decode = jwt.verify(token, process.env.JSW_SECRET); // provide playload and secreat key
-            console.log(decode);
+            console.log("decoded User",decode);
 
             req.user = decode; // attacth the user to the request object
         }

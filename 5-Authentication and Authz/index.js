@@ -1,8 +1,20 @@
+// npm init -y
+//npm i express
+// create file of server.js   
+//npm i nodeman 
+//npm i mongoose   
+//nom i dotenv
+
 const express = require("express");
 const app = express();
 
-require("dotenv").config();
+require("dotenv").config(); //load the config 
 const PORT = process.env.PORT || 4000;
+
+//cookie-oarser - what is this and why we need this
+//npm i cookie-parser
+const cookieParser = require("cookie-parser");
+app.use(cookieParser());
 
 app.use(express.json());
 
