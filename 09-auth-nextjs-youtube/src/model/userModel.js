@@ -8,7 +8,7 @@
          },
          email: {
             type: String,
-            require: [true, "please provide a username"],
+            required: [true, "please provide a username"],
          },
          password : {
             type: String,
@@ -29,6 +29,6 @@
 
  })
 
- const User = mongoose.model.users || mongoose.model("User", userSchema);
+ const User = mongoose.models.Users || mongoose.model("User", userSchema);
 
  export default User;
