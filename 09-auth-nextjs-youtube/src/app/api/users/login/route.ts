@@ -4,10 +4,21 @@ import {NextRequest, NextResponse } from "next/server";
 import bcryptjs from "bcryptjs";
 import jwt from "jsonwebtoken";
 
-connect()
 
 export async function  POST(request:NextRequest) {
     try{
+
+          
+     try {
+         await connect();
+      }   catch (error) {
+         console.error("Database connection failed:", error);
+         return NextResponse.json(
+           { error: "Internal Server Error" },
+           { status: 500 }
+        );
+   }
+
         const reqBody = await request.json()
         const {email,password} =reqBody;
         console.log(reqBody);
@@ -20,8 +31,8 @@ export async function  POST(request:NextRequest) {
         }
 
         //check if password is correct
-        const validPasword = await bcryptjs.compare(password, user.password)
-        if(!validPasword){
+        const validPassword = await bcryptjs.compare(password, user.password)
+        if(!validPassword){
             return NextResponse.json({error:"Inavalid pasword"},{status:400})
         }
         
@@ -32,7 +43,7 @@ export async function  POST(request:NextRequest) {
             email:user.email
         }
         //create Token
-        const token = await jwt.sign(tokenData, process.env.TOKEN_SECRET!, {expiresIn: "1d "})
+        const token = await jwt.sign(tokenData, process.env.TOKEN_SECRET!, {expiresIn: "1d"})
 
         const response = NextResponse.json({
             message: "Login successfully",
